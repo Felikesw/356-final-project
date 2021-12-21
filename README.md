@@ -13,7 +13,7 @@ conda env create -f env.yml
 
 ### Alternative Set Up
 
-If you are not using conda, you can still run this project in an environment with Python 3.7 with matplotlib installed.
+If you are not using conda, you can still run this project in an environment with Python 3.7 with mysql connector installed.
 
 ```bash
 # px: Installing mysql connector python package
