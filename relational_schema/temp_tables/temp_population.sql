@@ -9,10 +9,10 @@ CREATE TABLE temp_population (
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
     `Study Type` VARCHAR(64),
-    `Addressed Population` VARCHAR(64),
+    `Addressed Population` LONGTEXT,
     Challenge LONGTEXT,
     Solution LONGTEXT,
-    `Strength of Evidence` VARCHAR(64),
+    `Strength of Evidence` LONGTEXT,
     `Added on` VARCHAR(64)
 );
 
