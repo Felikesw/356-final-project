@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS temp_r_factors;
 SELECT 'create temp_r_factors' as '';
 
 CREATE TABLE temp_therapeutics(
-    Date DATE,
+    Date VARCHAR(64),
     Study LONGTEXT,
     `Study Link` LONGTEXT,
     Journal LONGTEXT,

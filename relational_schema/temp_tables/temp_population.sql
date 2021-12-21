@@ -1,10 +1,10 @@
 -- load in data under population
 DROP TABLE IF EXISTS temp_population;
 
-CREATE TABLE 'creating temp_population' as '';
+SELECT 'creating temp_population' as '';
 
 CREATE TABLE temp_population (
-    Date DATE,
+    Date VARCHAR(64),
     Study LONGTEXT,
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
