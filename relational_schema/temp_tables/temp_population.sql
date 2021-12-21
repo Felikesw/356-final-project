@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS temp_population;
 SELECT 'creating temp_population' as '';
 
 CREATE TABLE temp_population (
+    `` VARCHAR(24),
     Date VARCHAR(64),
     Study LONGTEXT,
     `Study Link` LONGTEXT,
@@ -22,15 +23,13 @@ LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/Manag
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
+IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/Measures to reach marginalized and disadvantaged populations.csv"
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
+IGNORE 1 LINES;
 
 SELECT '1/3 done' as '';
 
@@ -38,15 +37,13 @@ LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/Metho
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
+IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/Modes of communicating with target high-risk populations.csv"
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
+IGNORE 1 LINES;
 
 SELECT '2/3 done' as '';
 
@@ -54,13 +51,10 @@ LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/What 
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
+IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/1_population/What are ways to create hospital infrastructure to prevent nosocomial outbreaks_.csv"
 INTO TABLE temp_population
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Addressed Population`, Challenge, Solution, `Strength of Evidence`, `Added on`);
-
+IGNORE 1 LINES;
