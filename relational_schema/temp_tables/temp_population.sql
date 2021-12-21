@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS temp_population;
 SELECT 'creating temp_population' as '';
 
 CREATE TABLE temp_population (
-    Index VARCHAR(24),
+    Id VARCHAR(24),
     Date VARCHAR(64),
     Study LONGTEXT,
     `Study Link` LONGTEXT,
