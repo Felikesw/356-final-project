@@ -5,36 +5,31 @@ DROP TABLE IF EXISTS temp_therapeutics;
 SELECT 'create temp_therapeutics' as '';
 
 CREATE TABLE temp_therapeutics(
-    Date DATE,
-    Study VARCHAR(240),
-    `Study Link` VARCHAR(240),
+    Id VARCHAR(24),
+    Date VARCHAR(64),
+    Study LONGTEXT,
+    `Study Link` LONGTEXT,
     Journal VARCHAR(64),
     `Study Type` VARCHAR(64),
-    `Therapeutic method(s) utilized/assessed` VARCHAR(600),
-    `Sample Size` INT,
-    `Severity of Disease` VARCHAR(500),
-    `General Outcome/Conclusion Excerpt` VARCHAR(2000),
-    `Primary Endpoint(s) of Study` VARCHAR(500),
+    `Therapeutic method(s) utilized/assessed` LONGTEXT,
+    `Sample Size` VARCHAR(24),
+    `Severity of Disease` LONGTEXT,
+    `General Outcome/Conclusion Excerpt` LONGTEXT,
+    `Primary Endpoint(s) of Study` LONGTEXT,
     `Clinical Improvement (Y/N)` VARCHAR(2),
     `Added on` VARCHAR(64)
 );
 
 CREATE TABLE 'start loading data' as '';
 
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/What is the best method to combat the hypercoagulable state seen in COVID-19_.csv"
+LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/7_therapeutics_interventions_and_clinical_studies/What is the best method to combat the hypercoagulable state seen in COVID-19_.csv"
 INTO TABLE temp_metadata
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Therapeutic method(s) utilized/assessed`, 
-`Sample Size`, `Severity of Disease`, `General Outcome/Conclusion Excerpt`,
-`Primary Endpoint(s) of Study`, `Clinical Improvement (Y/N)`, `Added on`);
+IGNORE 1 LINES;
 
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/What is the efficacy of novel therapeutics being tested currently_.csv"
+LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/7_therapeutics_interventions_and_clinical_studies/What is the efficacy of novel therapeutics being tested currently_.csv"
 INTO TABLE temp_metadata
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES
-(Date, Study, `Study Link`, Journal, `Study Type`, `Therapeutic method(s) utilized/assessed`, 
-`Sample Size`, `Severity of Disease`, `General Outcome/Conclusion Excerpt`,
-`Primary Endpoint(s) of Study`, `Clinical Improvement (Y/N)`, `Added on`);
+IGNORE 1 LINES;
