@@ -1,9 +1,5 @@
-"""
-TODO:
-    convert to date time for comparison
-    double check the date time type
-"""
 from enum import Enum
+from datetime import datetime
 
 
 class FilterType(Enum):
@@ -61,7 +57,7 @@ class Study:
             param1: new_date : a string for date
 
         """
-        self.date_lower_bound = new_date
+        self.date_lower_bound = datetime.strptime(new_date, "%Y-%m-%d").date()
 
     def date_upper_update(self, new_date) -> None:
         """function that updates the date_upper_bound
@@ -70,7 +66,7 @@ class Study:
             param1: new_date : a string for date
 
         """
-        self.date_upper_bound = new_date
+        self.date_upper_bound = datetime.strptime(new_date, "%Y-%m-%d").date()
 
     def keywords_update(self, new_keywords) -> None:
         """function that updates the keywords

@@ -3,27 +3,55 @@ import getpass
 import logging
 from Study import Study, FilterType
 import time
+import argparse
 
-DEFAULT_RECORD_LIMIT = 1000
-# limit of how many records to return
-RECORD_LIMIT = 1000
+"""global variables"""
+DEFAULT_RECORD_LIMIT = 1000  # default record limit
+RECORD_LIMIT = 1000  # limit of how many records to return
+WITH_DB = (
+    False  # 0 to run script without connecting to the databse, 1 run with connection
+)
+"""database connection variables"""
+CNX = None
+CURSOR = None
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-db",
+        action="store_true",
+        help="Include this flag to run script with database connection",
+    )
+    args = parser.parse_args()
+
+    global WITH_DB
+    WITH_DB = args.db
+
     # ask for user name
     username = input("Enter Username: ")
-    # # connect to the db
-    # mydb = mysql.connector.connect(
-    #     host="marmoset03.shoshin.uwaterloo.ca",
-    #     user=username,
-    #     password=getpass.getpass(),
-    #     database=f"db356_{username}",
-    # )
-    # cursor = mydb.cursor()
+    if WITH_DB:
+        establish_cnx(username)
 
     initial_selection()
-    # make a class for questions
-    # make a class for risk factors
+
+
+def establish_cnx(username):
+    """establish connection to the database
+
+    Args:
+        param1: username : a string for the username
+
+    """
+    global CNX
+    CNX = mysql.connector.connect(
+        host="marmoset03.shoshin.uwaterloo.ca",
+        user=username,
+        password=getpass.getpass(),
+        database=f"db356_{username}",
+    )
+    global CURSOR
+    CURSOR = CNX.cursor()
 
 
 def initial_selection() -> None:
@@ -38,7 +66,7 @@ Please select one of the following options:
 1. Search for studies 
 2. Search for risk factors
 3. Search for questions
-4. Input new data
+4. Insert new data
 5. Exit
 -------------------------------------------
 """
@@ -64,6 +92,10 @@ Please select one of the following options:
 
     elif option == 5:
         print("\n[INFO] Program exited successfully.\n")
+        # close the connections
+        if WITH_DB:
+            cursor.close()
+            cnx.close()
         # terminate program
         quit()
     else:
@@ -151,17 +183,20 @@ Please seperate the keywords with a comma when entering multiple (e.x. Covid, re
     elif option == 4:
         limit_update()
 
-    elif option == 5:
-        initial_selection()
-
-    else:
+    elif option != 5:
         print("\n[ERROR] Invalid selection, please try again.")
 
     if create_query:
         query = study.create_query(RECORD_LIMIT)
-        print(f"query: {query}")
+        print(f"query: {query}\n")
+        if WITH_DB:
+            CURSOR.execute(query)
+            for row in CURSOR:
+                print(row)
+            print("\n")
 
-    study_selection()
+    if option != 5:
+        study_selection()
 
 
 def limit_update():
@@ -214,6 +249,32 @@ def modify_RECORD_LIMIT(new_limit):
     """
     global RECORD_LIMIT
     RECORD_LIMIT = new_limit
+
+
+def insert_date():
+    """insert new data"""
+    time.sleep(0.5)
+    data_table = ""
+    columns = ""
+    values = ""
+    option = int(
+        input(
+            f"""
+==========================================
+Please select one of the following tables: 
+------------------------------------------
+1. Study
+2. Back
+------------------------------------------
+"""
+        )
+    )
+
+    if option == 1:
+        data_table = "Study"
+
+    if optino != 2 and data_table != "" and columns != "" and values != "":
+        query = f"INSERT INTO {data_table}" f"({columns})" f"VALUES ({values})"
 
 
 if __name__ == "__main__":
