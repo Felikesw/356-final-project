@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS temp_metadata;
 
 SELECT 'create temp_metadata' as '';
 
-CREATE TABLE temp_metadata (
+CREATE TABLE temp_metadata_3 (
     cord_uid VARCHAR(64),
     sha LONGTEXT,
     source_x VARCHAR(64),
@@ -26,10 +26,11 @@ CREATE TABLE temp_metadata (
     s2_id LONGTEXT
 );
 
-CREATE INDEX title_idx On temp_metadata (title);
-
 LOAD DATA INFILE "/var/lib/mysql-files/Group53/new_metadata.csv"
-INTO TABLE temp_metadata
+INTO TABLE temp_metadata_3
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
+IGNORE 1 LINES; 
+-- started at 5:18 estimated 1 hour run time
+
+CREATE INDEX title_idx On temp_metadata (title);

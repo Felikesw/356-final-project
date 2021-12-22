@@ -5,7 +5,7 @@ CREATE TABLE Study(
     journal_name VARCHAR(255),
     study_link LONGTEXT,
     doi LONGTEXT,
-    title LONGTEXT,
+    title VARCHAR(255),
     abstract LONGTEXT,
     pubmed_id VARCHAR(64),
     source VARCHAR(64),

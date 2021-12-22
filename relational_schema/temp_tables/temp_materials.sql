@@ -5,7 +5,7 @@ SELECT 'creating temp_materials' as '';
 CREATE TABLE temp_materials (
     Id VARCHAR(24),
     Date VARCHAR(64),
-    Study LONGTEXT,
+    Study VARCHAR(255),
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
     `Study Type` VARCHAR(64),
@@ -21,12 +21,6 @@ CREATE TABLE temp_materials (
 SELECT 'start loading data' as '';
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/5_materials/Adhesion to hydrophilic_phobic surfaces.csv"
-INTO TABLE temp_materials
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
-
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/5_materials/Coronavirus susceptibility to heat light and radiation.csv"
 INTO TABLE temp_materials
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"

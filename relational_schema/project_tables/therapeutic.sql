@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS `Therapeutics Interventions and Clinical Studies`;
 
 CREATE TABLE `Therapeutics Interventions and Clinical Studies`(
-    title LONGTEXT
+    title VARCHAR(255)
     , therapeutic_method LONGTEXT
-    , sample_size VARCHAR(24)
+    , sample_size VARCHAR(255)
     , severity_of_disease LONGTEXT
     , conclusion LONGTEXT
     , endpoint_of_study LONGTEXT

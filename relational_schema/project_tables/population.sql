@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Population;
 
 CREATE TABLE Population(
-    title LONGTEXT
+    title VARCHAR(255)
     , addressed_population LONGTEXT
     , challenge LONGTEXT
     , solution LONGTEXT

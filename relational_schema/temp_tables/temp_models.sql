@@ -5,7 +5,7 @@ SELECT 'creating temp_models' as '';
 CREATE TABLE temp_models (
     Id VARCHAR(24),
     Date VARCHAR(64),
-    Study LONGTEXT,
+    Study VARCHAR(255),
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
     Method LONGTEXT,

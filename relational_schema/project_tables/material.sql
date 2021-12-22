@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Materials;
 
 CREATE TABLE Materials(
-    title LONGTEXT
+    title VARCHAR(255)
     , material  VARCHAR(64)
     , method LONGTEXT
     , viral_titer LONGTEXT

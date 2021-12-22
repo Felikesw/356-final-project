@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `Relevant Factor`;
 
 CREATE TABLE `Relevant Factor`(
-    title LONGTEXT
+    title VARCHAR(255)
     , factors LONGTEXT
     , influential VARCHAR(2)
     , excerpt LONGTEXT

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `Risk Factors`;
 
 CREATE TABLE `Risk Factors`(
-    title LONGTEXT
+    title VARCHAR(255)
     , severe VARCHAR(24)
     , severe_lower_bound DOUBLE PRECISION(3,6)
     , severe_upper_bound DOUBLE PRECISION(3,6)

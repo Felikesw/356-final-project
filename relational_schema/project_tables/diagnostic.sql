@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS Diagnostic;
 
 CREATE TABLE Diagnostic(
-    title LONGTEXT
-    , detection_method VARCHAR(64)
+    title VARCHAR(255)
+    , detection_method  VARCHAR(255)
     , sample_size VARCHAR(64)
     , measure_of_testing_accuracy LONGTEXT
-    , speed_of_assay VARCHAR(64)
-    , fda_approval VARCHAR(2)
+    , speed_of_assay VARCHAR(255)
+    , fda_approval VARCHAR(64)
     , added_on VARCHAR(64)
     , question_type VARCHAR(255)
     , PRIMARY KEY (title)

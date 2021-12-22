@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `Models and Open Questions`;
 
 CREATE TABLE `Models and Open Questions`(
-    title LONGTEXT NOT NULL
+    title VARCHAR(255) NOT NULL
     , method LONGTEXT
     , result LONGTEXT
     , measure_of_evidence LONGTEXT

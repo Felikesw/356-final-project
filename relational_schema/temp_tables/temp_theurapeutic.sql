@@ -7,12 +7,12 @@ SELECT 'create temp_therapeutics' as '';
 CREATE TABLE temp_therapeutics(
     Id VARCHAR(24),
     Date VARCHAR(64),
-    Study LONGTEXT,
+    Study VARCHAR(255),
     `Study Link` LONGTEXT,
-    Journal VARCHAR(64),
+    Journal VARCHAR(255),
     `Study Type` VARCHAR(64),
     `Therapeutic method(s) utilized/assessed` LONGTEXT,
-    `Sample Size` VARCHAR(24),
+    `Sample Size` VARCHAR(255),
     `Severity of Disease` LONGTEXT,
     `General Outcome/Conclusion Excerpt` LONGTEXT,
     `Primary Endpoint(s) of Study` LONGTEXT,
@@ -32,7 +32,20 @@ LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/7_therapeutics_int
 INTO TABLE temp_therapeutics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
+IGNORE 1 LINES
+( Id,
+    Date,
+    Study,
+    `Study Link` ,
+    Journal,
+    `Therapeutic method(s) utilized/assessed` ,
+    `Sample Size`,
+    `Severity of Disease` ,
+    `General Outcome/Conclusion Excerpt` ,
+    `Primary Endpoint(s) of Study` ,
+    `Clinical Improvement (Y/N)`,
+    `Study Type`,
+    `Added on`);
 
 ALTER TABLE temp_therapeutics
 ADD COLUMN question_type VARCHAR(255) DEFAULT "Therapeutics Interventions and Clinical Studies";

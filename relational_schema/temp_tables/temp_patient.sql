@@ -5,13 +5,14 @@ SELECT 'creating temp_patient' as '';
 CREATE TABLE temp_patient (
     Id VARCHAR(24),
     Date VARCHAR(64),
-    Study LONGTEXT,
+    Study VARCHAR(255),
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
+    `Study Type`VARCHAR(64),
     `Sample Size` VARCHAR(64),
-    Age VARCHAR(24),
+    Age VARCHAR(255),
     `Sample Obtained` VARCHAR(64),
-    `Asymptomatic Transmission` DOUBLE PRECISION(3,6),
+    `Asymptomatic Transmission` VARCHAR(64),
     `Characteristic` VARCHAR(64),
     Excerpt LONGTEXT,
     `Added on` VARCHAR(64)
@@ -38,12 +39,6 @@ LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Length of viral shedding after illness onset.csv"
-INTO TABLE temp_patient
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
-
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Manifestations of COVID-19 including but not limited to possible cardiomyopathy and cardiac arrest.csv"
 INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
