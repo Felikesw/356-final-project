@@ -26,7 +26,7 @@ CREATE TABLE temp_metadata (
     s2_id LONGTEXT
 );
 
-LOAD DATA INFILE "/var/lib/mysql-files/Group53/metadata.csv"
+LOAD DATA INFILE "/var/lib/mysql-files/Group53/new_metadata.csv"
 INTO TABLE temp_metadata
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
