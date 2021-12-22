@@ -17,49 +17,33 @@ CREATE TABLE temp_models (
 SELECT 'start loading data' as '';
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/Are there studies about phenotypic change_.csv"
-INTO TABLE temp_population
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
-
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/Efforts to develop qualitative assessment frameworks.csv"
-INTO TABLE temp_population
+INTO TABLE temp_models
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/How can we measure changes in COVID-19_s behavior in a human host as the virus evolves over time_.csv"
-INTO TABLE temp_population
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
-
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/Serial Interval (time between symptom onset in infector-infectee pair).csv"
-INTO TABLE temp_population
+INTO TABLE temp_models
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/Studies to monitor potential adaptations.csv"
-INTO TABLE temp_population
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
-
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/What do models for transmission predict_.csv"
-INTO TABLE temp_population
+INTO TABLE temp_models
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/What is known about adaptations (mutations) of the virus_.csv"
-INTO TABLE temp_population
+INTO TABLE temp_models
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/4_models_and_open_questions/What regional genetic variations (mutations) exist.csv"
-INTO TABLE temp_population
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
+ALTER TABLE temp_models
+ADD COLUMN question_type VARCHAR(255) DEFAULT "Models and Open Questions";
+
+ALTER TABLE temp_models
+ADD COLUMN `Study Type` VARCHAR(64) DEFAULT NULL;
+
+CREATE INDEX study_idx On temp_models (Study);

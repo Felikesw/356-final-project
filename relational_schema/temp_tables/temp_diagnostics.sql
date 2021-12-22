@@ -14,25 +14,31 @@ CREATE TABLE temp_diagnostics (
     `Sample Size` VARCHAR(64),
     `Measure of Testing Accuracy` LONGTEXT,
     `Speed of assay` VARCHAR(64),
+    `FDA Approval` VARCHAR(2),
     `Added on` VARCHAR(64)
 );
 
 SELECT 'start loading data' as '';
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/6_diagnostics/Development of a point-of-care test and rapid bed-side tests.csv"
-INTO TABLE temp_population
+INTO TABLE temp_diagnostics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/6_diagnostics/Diagnosing SARS-COV-2 with Nucleic-acid based tech.csv"
-INTO TABLE temp_population
+INTO TABLE temp_diagnostics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/6_diagnostics/Diagnosing SARS-COV-2 with antibodies.csv"
-INTO TABLE temp_population
+INTO TABLE temp_diagnostics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
+
+ALTER TABLE temp_diagnostics
+ADD COLUMN question_type VARCHAR(255) DEFAULT "Diagnostics";
+
+CREATE INDEX study_idx On temp_diagnostics (Study);

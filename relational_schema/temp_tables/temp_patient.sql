@@ -9,7 +9,7 @@ CREATE TABLE temp_patient (
     `Study Link` LONGTEXT,
     Journal LONGTEXT,
     `Sample Size` VARCHAR(64),
-    `Age` VARCHAR(24),
+    Age VARCHAR(24),
     `Sample Obtained` VARCHAR(64),
     `Asymptomatic Transmission` DOUBLE PRECISION(3,6),
     `Characteristic` VARCHAR(64),
@@ -20,50 +20,48 @@ CREATE TABLE temp_patient (
 SELECT 'start loading data' as '';
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Can the virus be transmitted asymptomatically or during the incubation period_.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/How does viral load relate to disease presentations and likelihood of a positive diagnostic test_.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Incubation period across different age groups.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Length of viral shedding after illness onset.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Manifestations of COVID-19 including but not limited to possible cardiomyopathy and cardiac arrest.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Proportion of all positive COVID19 patients who were asymptomatic.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/Proportion of pediatric COVID19 patients who were asymptomatic.csv"
-INTO TABLE temp_population
+INTO TABLE temp_patient
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
-LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/3_patient_descriptions/What is the incubation period of the virus_.csv"
-INTO TABLE temp_population
-FIELDS TERMINATED BY "," ENCLOSED BY '"'
-LINES TERMINATED BY "\n"
-IGNORE 1 LINES;
+ALTER TABLE temp_patient
+ADD COLUMN question_type VARCHAR(255) DEFAULT "Patient Descriptions";
 
+CREATE INDEX study_idx On temp_patient (Study);

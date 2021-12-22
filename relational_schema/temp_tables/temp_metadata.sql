@@ -26,6 +26,8 @@ CREATE TABLE temp_metadata (
     s2_id LONGTEXT
 );
 
+CREATE INDEX title_idx On temp_metadata (title);
+
 LOAD DATA INFILE "/var/lib/mysql-files/Group53/new_metadata.csv"
 INTO TABLE temp_metadata
 FIELDS TERMINATED BY "," ENCLOSED BY '"'

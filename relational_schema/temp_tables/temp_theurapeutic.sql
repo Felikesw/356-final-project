@@ -23,13 +23,18 @@ CREATE TABLE temp_therapeutics(
 CREATE TABLE 'start loading data' as '';
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/7_therapeutics_interventions_and_clinical_studies/What is the best method to combat the hypercoagulable state seen in COVID-19_.csv"
-INTO TABLE temp_metadata
+INTO TABLE temp_therapeutics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
 
 LOAD DATA INFILE "/var/lib/mysql-files/06-COVID/target_tables/7_therapeutics_interventions_and_clinical_studies/What is the efficacy of novel therapeutics being tested currently_.csv"
-INTO TABLE temp_metadata
+INTO TABLE temp_therapeutics
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
+
+ALTER TABLE temp_therapeutics
+ADD COLUMN question_type VARCHAR(255) DEFAULT "Therapeutics Interventions and Clinical Studies";
+
+CREATE INDEX study_idx On temp_therapeutics (Study);
