@@ -25,8 +25,9 @@ ORDER BY
   study_id, n;
 
 CREATE TABLE new_authors AS(
-  SELECT*, 
-     row_number() OVER(PARTITION BY author_name, contributing_study_id ORDER BY author_id desc) AS rn
+  SELECT
+    * 
+    , row_number() OVER(PARTITION BY author_name, contributing_study_id ORDER BY author_id desc) AS rn
   FROM Author
 );
 
