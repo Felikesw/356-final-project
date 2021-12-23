@@ -58,7 +58,7 @@ def establish_cnx(username):
     """
     global CNX
     CNX = mysql.connector.connect(
-        host="marmoset03.shoshin.uwaterloo.ca",
+        host="marmoset04.shoshin.uwaterloo.ca",
         user=username,
         password=getpass.getpass(),
         database=f"db356_{username}",
