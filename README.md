@@ -24,10 +24,16 @@ pip install mysql-connector-python
 
 ## Usage
 
-To run the code for test cases
+To run the code for test cases with database connection
 
 ```bash
-# TODO: make test cases
+python3 main.py -db
+```
+
+To run the code for test cases without database connection
+
+```bash
+python3 main.py
 ```
 
 To get help with the command line option
