@@ -226,3 +226,7 @@ INNER JOIN temp_metadata t ON p.Study=t.title
 INNER JOIN Journal j ON j.journal_name=t.journal;
 
 
+CREATE INDEX study_type_idx ON Study(study_type);
+CREATE INDEX date_idx ON Study(date);
+CREATE INDEX title_idx ON Study(title);
+

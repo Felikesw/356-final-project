@@ -37,3 +37,6 @@ INSERT INTO Diagnostic (
     , question_type
 FROM temp_diagnostics
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE Diagnostic
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 

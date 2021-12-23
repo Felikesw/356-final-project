@@ -1,4 +1,0 @@
-journal 
-question
-study
-rest
