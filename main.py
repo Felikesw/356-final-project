@@ -43,7 +43,6 @@ def main():
 
     # ask for user name
     username = input("Enter Username: ")
-    logging.info(f"username: {username}")
     if WITH_DB:
         establish_cnx(username)
 
