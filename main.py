@@ -1,19 +1,28 @@
-import mysql.connector
+import time
 import getpass
 import logging
-from Study import Study, FilterType
-import time
 import argparse
+import mysql.connector
+from Study import Study, FilterType
 
 """global variables"""
 DEFAULT_RECORD_LIMIT = 1000  # default record limit
-RECORD_LIMIT = 1000  # limit of how many records to return
+RECORD_LIMIT = DEFAULT_RECORD_LIMIT  # limit of how many records to return
 WITH_DB = (
     False  # 0 to run script without connecting to the databse, 1 run with connection
 )
 """database connection variables"""
 CNX = None
 CURSOR = None
+"""logger"""
+FILE_NAME = "debug.log"
+logging.basicConfig(
+    filename=FILE_NAME,
+    level=logging.INFO,
+    filemode="a+",
+    format="%(message)s",
+    # format="%(asctime)s [%(levelname)s] (line %(lineno)s %(funcName)s): %(message)s",
+)
 
 
 def main():
@@ -28,8 +37,13 @@ def main():
     global WITH_DB
     WITH_DB = args.db
 
+    # reset log
+    file = open(FILE_NAME, "w+")
+    file.close()
+
     # ask for user name
     username = input("Enter Username: ")
+    logging.info(f"username: {username}")
     if WITH_DB:
         establish_cnx(username)
 
@@ -92,6 +106,8 @@ Please select one of the following options:
 
     elif option == 5:
         print("\n[INFO] Program exited successfully.\n")
+        logging.info(f"Program exited successfully.")
+
         # close the connections
         if WITH_DB:
             cursor.close()
@@ -100,6 +116,7 @@ Please select one of the following options:
         quit()
     else:
         print("\n[ERROR] Invalid selection, please try again.")
+        logging.error(f"Invalid selection.")
 
     initial_selection()
 
@@ -124,7 +141,7 @@ Please select one of the following options:
         )
     )
 
-    study = Study()
+    study = Study(logger=logging)
     create_query = False
     query = ""
 
@@ -185,10 +202,13 @@ Please seperate the keywords with a comma when entering multiple (e.x. Covid, re
 
     elif option != 5:
         print("\n[ERROR] Invalid selection, please try again.")
+        logging.error(f"Invalid selection.")
 
     if create_query:
         query = study.create_query(RECORD_LIMIT)
-        print(f"query: {query}\n")
+
+        # print(f"query: {query}\n")
+        logging.info(query)
         if WITH_DB:
             CURSOR.execute(query)
             for row in CURSOR:
@@ -235,9 +255,11 @@ Please enter the new positive integer limit:
         return
     else:
         print("\n[ERROR] Invalid selection, please try again.")
+        logging.error(f"Invalid selection.")
         limit_update()
 
     print(f"\n[INFO] Updated limit: {RECORD_LIMIT} records.")
+    logging.info(f"Updated limit: {RECORD_LIMIT} records.")
 
 
 def modify_RECORD_LIMIT(new_limit):
@@ -272,6 +294,7 @@ Please select one of the following tables:
 
     if option == 1:
         data_table = "Study"
+        # values =
 
     if optino != 2 and data_table != "" and columns != "" and values != "":
         query = f"INSERT INTO {data_table}" f"({columns})" f"VALUES ({values})"

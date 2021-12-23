@@ -1,3 +1,4 @@
+#
 from enum import Enum
 from datetime import datetime
 
@@ -16,13 +17,14 @@ class DateType(Enum):
 
 
 class Study:
-    def __init__(self) -> None:
+    def __init__(self, logger=None) -> None:
         self.filter_type = FilterType.ALL  # how the query will filter the data
         self.study_type = None  # the study_type column in the table
         self.date_lower_bound = None  # the lower bound of the datetime
         self.date_upper_bound = None  # the upper bound of the datetime
         self.keywords = []  # for filtering keywords in both abstract and title
         self.table = "Study"  # the table that the query will be created based on
+        self.logger = logger  # the logger for this class
 
     def reset_study(self) -> None:
         """function that resets Study"""
@@ -85,6 +87,7 @@ class Study:
             print(
                 "[ERROR] Invalid keywords format. Please seperate the keywords with a comma when entering multiple (e.x. Covid, reviews)."
             )
+            self.logger.error("Invalid keywords")
 
     def create_query(self, limit) -> str:
         """function that creates and return a sql query
@@ -95,7 +98,7 @@ class Study:
         Returns:
             returns an empty string if any errors occurs, else return a stirng containing the query created
         """
-        query = "SELECT * "
+        query = f"SELECT * FROM {self.table} "
 
         # filter with specified attributes
         if self.filter_type == FilterType.SPECIFICATION:
@@ -117,12 +120,12 @@ class Study:
                 )
             # when filtering with only lower bound
             if not first_keyword and date_type != DateType.NOTGIVEN:
-                query += "AND"
+                query += "WHERE" if first_keyword else "AND"
             if date_type == DateType.ONLYLOWER:
-                query += f" WHERE date >= '{self.date_lower_bound}' "
+                query += f" date >= '{self.date_lower_bound}' "
             # when filtering with only an upper bound
             elif date_type == DateType.ONLYUPPER:
-                query += f" WHERE date <= '{self.date_upper_bound}' "
+                query += f" date <= '{self.date_upper_bound}' "
             # when filtering with a lower bound and an upper bound
             elif date_type == DateType.BOTH:
                 # error check
@@ -130,19 +133,22 @@ class Study:
                     print(
                         "[ERROR] Date lower bound higher than date upper bound, please make sure the upper bound >= lower bound."
                     )
+                    self.logger.error(
+                        f"Invalid bounds. Lower: {self.date_lower_bound}, upper: {self.date_upper_bound}"
+                    )
                     return ""
-                query += f" WHERE date BETWEEN '{self.date_lower_bound}' AND '{self.date_upper_bound}' "
+                query += f" (date BETWEEN '{self.date_lower_bound}' AND '{self.date_upper_bound}') "
         # filter by keywords
         elif self.filter_type == FilterType.KEYWORDS:
             if len(self.keywords) > 0:
                 first_keyword = True
                 for keyword in self.keywords:
-                    query += " WHERE " if first_keyword else " OR "
+                    query += "WHERE" if first_keyword else "OR"
                     if first_keyword:
                         first_keyword = False
                     query += (
                         f" title LIKE '%{keyword}%' OR abstract LIKE '%{keyword}%' "
                     )
 
-        query += f"FROM {self.table} LIMIT {limit};"
+        query += f"LIMIT {limit};"
         return query
