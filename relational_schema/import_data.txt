@@ -1,0 +1,92 @@
+-here is the list of csvs that were imported:
+
+metadata.csv
+
+-from population:
+Management of patients who are underhoused or otherwise lower social economic status.csv
+Measures to reach marginalized and disadvantaged populations.csv
+Methods to control the spread in communities.csv
+Modes of communicating with target high-risk populations.csv
+What are recommendations for combating_overcoming resource failures_.csv
+What are ways to create hospital infrastructure to prevent nosocomial outbreaks_.csv
+
+-from relevant_factors
+Effectiveness of a multifactorial strategy to prevent secondary transmission.csv
+Effectiveness of case isolation_isolation of exposed individuals to prevent secondary transmission.csv
+Effectiveness of community contact reduction.csv
+Effectiveness of inter_inner travel restriction.csv
+Effectiveness of school distancing.csv
+Effectiveness of workplace distancing to prevent secondary transmission.csv
+How does temperature and humidity affect the transmission of 2019-nCoV_.csv
+Methods to understand and regulate the spread in communities.csv
+Seasonality of transmission.csv
+What is the likelihood of significant changes in transmissibility in changing seasons_.csv
+
+-patient descriptions
+Can the virus be transmitted asymptomatically or during the incubation period_.csv
+How does viral load relate to disease presentations and likelihood of a positive diagnostic test_.csv
+Incubation period across different age groups.csv
+Length of viral shedding after illness onset.csv
+Manifestations of COVID-19 including but not limited to possible cardiomyopathy and cardiac arrest.csvs
+Proportion of all positive COVID19 patients who were asymptomatic.csv
+Proportion of pediatric COVID19 patients who were asymptomatic.csv
+What is the incubation period of the virus_.csv
+
+-models
+Are there studies about phenotypic change_.csv
+Efforts to develop qualitative assessment frameworks.csv
+How can we measure changes in COVID-19_s behavior in a human host as the virus evolves over time_.csv
+Serial Interval (time between symptom onset in infector-infectee pair).csv
+Studies to monitor potential adaptations.csv
+What do models for transmission predict_.csv
+What is known about adaptations (mutations) of the virus_.csv
+What regional genetic variations (mutations) exist.csv
+
+-materials
+Adhesion to hydrophilic_phobic surfaces.csv
+Coronavirus susceptibility to heat light and radiation.csv
+How long can other HCoV strains remain viable on common surfaces_.csv
+Persistence of virus on surfaces of different materials.csv
+Susceptibility to environmental cleaning agents.csv
+What do we know about viral shedding in blood_.csv
+What do we know about viral shedding in stool_.csv
+What do we know about viral shedding in the nasopharynx_.csv
+What do we know about viral shedding in urine_.csv
+
+-diagnostcs
+Development of a point-of-care test and rapid bed-side tests.csv
+Diagnosing SARS-COV-2 with Nucleic-acid based tech.csv
+Diagnosing SARS-COV-2 with antibodies.csv
+
+-therapeutics
+What is the best method to combat the hypercoagulable state seen in COVID-19_.csv
+What is the efficacy of novel therapeutics being tested currently_.csv
+
+-risk_factors
+Age.csv
+Asthma.csv
+Autoimmune disorders.csv
+Cancer.csv
+Cardio- and cerebrovascular disease.csv
+Cerebrovascular disease.csv
+Chronic digestive disorders.csv
+Chronic kidney disease.csv
+Chronic liver disease.csv
+Chronic respiratory diseases.csv
+Dementia.csv
+Diabetes.csv
+Drinking.csv
+Endocrine diseases.csv
+Ethnicity_ Hispanic vs. non-Hispanic.csv
+Heart Disease.csv
+Heart Failure.csv
+Hypertension.csv
+Immune system disorders.csv
+Male gender.csv
+Neurological disorders.csv
+Overweight or obese.csv
+Race_ Asian vs. White.csv
+Race_ Black vs. White.csv
+Race_ Other vs. White.csv
+Respiratory system diseases.csv
+Smoking Status.csv
