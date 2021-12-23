@@ -3,7 +3,7 @@ import getpass
 import logging
 import argparse
 import mysql.connector
-from Study import Study, FilterType
+from Study import Study, FilterType, study_column_value
 
 """global variables"""
 DEFAULT_RECORD_LIMIT = 1000  # default record limit
@@ -68,7 +68,7 @@ def establish_cnx(username):
     CURSOR = CNX.cursor()
 
 
-def initial_selection() -> None:
+def initial_selection():
     """initial selection for the user: search for studies, search for risk factors, search for questions, add new data"""
     time.sleep(0.5)
     option = int(
@@ -100,9 +100,7 @@ Please select one of the following options:
         )
 
     elif option == 4:
-        print(
-            "\n[INFO] Some new and exciting features are being developed, come back later to check it out!"
-        )
+        insert_data()
 
     elif option == 5:
         print("\n[INFO] Program exited successfully.\n")
@@ -207,13 +205,13 @@ Please seperate the keywords with a comma when entering multiple (e.x. Covid, re
     if create_query:
         query = study.create_query(RECORD_LIMIT)
 
-        # print(f"query: {query}\n")
         logging.info(query)
         if WITH_DB:
             CURSOR.execute(query)
+            logging.info("-------------START OF DATA-------------")
             for row in CURSOR:
-                print(row)
-            print("\n")
+                logging.info(row)
+            logging.info("--------------END OF DATA--------------")
 
     if option != 5:
         study_selection()
@@ -273,12 +271,11 @@ def modify_RECORD_LIMIT(new_limit):
     RECORD_LIMIT = new_limit
 
 
-def insert_date():
-    """insert new data"""
+def insert_data():
+    """function that insert data into a data table"""
     time.sleep(0.5)
     data_table = ""
-    columns = ""
-    values = ""
+    values = {}
     option = int(
         input(
             f"""
@@ -294,10 +291,38 @@ Please select one of the following tables:
 
     if option == 1:
         data_table = "Study"
-        # values =
+        values = study_column_value()
 
-    if optino != 2 and data_table != "" and columns != "" and values != "":
-        query = f"INSERT INTO {data_table}" f"({columns})" f"VALUES ({values})"
+    if option != 2 and data_table != "" and len(values) > 0:
+        query = f"INSERT INTO {data_table}"
+        columns = ""
+        data = ""
+        first_pair = True
+        for key in values:
+            value = values[key]
+            if first_pair:
+                first_pair = False
+            else:
+                columns += ", "
+                data += ", "
+
+            columns += key
+            if value[1] == "":
+                data += "NULL"
+            else:
+                if value[0]:
+                    data += value[1]
+                else:
+                    data += f"'{value[1]}'"
+        query += f"({columns}) VALUES ({data});"
+
+        logging.info(query)
+        if WITH_DB:
+            CURSOR.execute(query)
+            logging.info("-------------START OF DATA-------------")
+            for row in CURSOR:
+                logging.info(row)
+            logging.info("--------------END OF DATA--------------")
 
 
 if __name__ == "__main__":

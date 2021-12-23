@@ -1,4 +1,3 @@
-#
 from enum import Enum
 from datetime import datetime
 
@@ -152,3 +151,125 @@ class Study:
 
         query += f"LIMIT {limit};"
         return query
+
+
+def study_column_value() -> dict:
+    """function that returns the columns and values for data insertion for the Study table
+
+    Returns:
+        returns a dict, key is the column name in string;
+        value is a list, first element indicates whether or not this is an int column (0 is
+        not, 1 is), second element is the inserting data
+    """
+    results = {}
+    results["journal_id"] = [
+        1,
+        input(
+            f"""
+-----------------------------------------------------------------------------------------
+Please enter the journal_id (INT), or press enter key to continue with the default value.
+-----------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["study_link"] = [
+        0,
+        input(
+            f"""
+----------------------------------------------------------------------------------------------
+Please enter the study_link (LONGTEXT), or press enter key to continue with the default value.
+----------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["doi"] = [
+        0,
+        input(
+            f"""
+---------------------------------------------------------------------------------------
+Please enter the doi (LONGTEXT), or press enter key to continue with the default value.
+---------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["title"] = [
+        0,
+        input(
+            f"""
+---------------------------------------------------------------------------------------------
+Please enter the title (VARCHAR(255)), or press enter key to continue with the default value.
+---------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["abstract"] = [
+        0,
+        input(
+            f"""
+---------------------------------------------------------------------------------------------
+Please enter the abstract  (LONGTEXT), or press enter key to continue with the default value.
+---------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["pubmed_id"] = [
+        0,
+        input(
+            f"""
+------------------------------------------------------------------------------------------------
+Please enter the pubmed_id (VARCHAR(64)), or press enter key to continue with the default value.
+------------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["source"] = [
+        0,
+        input(
+            f"""
+---------------------------------------------------------------------------------------------
+Please enter the source (VARCHAR(64)), or press enter key to continue with the default value.
+---------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["license"] = [
+        0,
+        input(
+            f"""
+----------------------------------------------------------------------------------------------
+Please enter the license (VARCHAR(64)), or press enter key to continue with the default value.
+----------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["study_type"] = [
+        0,
+        input(
+            f"""
+-------------------------------------------------------------------------------------------------
+Please enter the study_type (VARCHAR(64)), or press enter key to continue with the default value.
+-------------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    results["date"] = [
+        0,
+        input(
+            f"""
+-------------------------------------------------------------------------------------------
+Please enter the date (VARCHAR(64)), or press enter key to continue with the default value.
+-------------------------------------------------------------------------------------------
+"""
+        ),
+    ]
+
+    return results
