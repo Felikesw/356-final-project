@@ -1,7 +1,9 @@
 DROP TABLE IF EXISTS Diagnostic;
 
 CREATE TABLE Diagnostic(
-    title VARCHAR(255)
+    id INT NOT NULL AUTO_INCREMENT
+    , study_id INT
+    , title VARCHAR(255)
     , detection_method  VARCHAR(255)
     , sample_size VARCHAR(64)
     , measure_of_testing_accuracy LONGTEXT
@@ -9,12 +11,13 @@ CREATE TABLE Diagnostic(
     , fda_approval VARCHAR(64)
     , added_on VARCHAR(64)
     , question_type VARCHAR(255)
-    , PRIMARY KEY (title)
-    , FOREIGN KEY (title) REFERENCES Study(title)
+    , PRIMARY KEY (id)
+    , FOREIGN KEY (study_id) REFERENCES Study(study_id)
 );
 
 INSERT INTO Diagnostic (
-    title 
+    study_id
+    , title  
     , detection_method
     , sample_size
     , measure_of_testing_accuracy
@@ -23,7 +26,8 @@ INSERT INTO Diagnostic (
     , added_on 
     , question_type
 ) SELECT
-    Study
+    study_id
+    , Study
     , `Detection Method`
     , `Sample Size` 
     , `Measure of Testing Accuracy` 
@@ -31,4 +35,5 @@ INSERT INTO Diagnostic (
     , `FDA Approval` 
     , `Added on`
     , question_type
-FROM temp_diagnostics;
+FROM temp_diagnostics
+INNER JOIN Study ON title=Study;

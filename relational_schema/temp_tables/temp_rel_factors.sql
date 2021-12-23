@@ -80,5 +80,3 @@ IGNORE 1 LINES;
 
 ALTER TABLE temp_r_factors
 ADD COLUMN question_type VARCHAR(255) DEFAULT "Relevant Factors";
-
-CREATE INDEX study_idx On temp_r_factors (Study);

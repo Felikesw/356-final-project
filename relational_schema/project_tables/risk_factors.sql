@@ -1,32 +1,36 @@
 DROP TABLE IF EXISTS `Risk Factors`;
 
 CREATE TABLE `Risk Factors`(
-    title VARCHAR(255)
+    risk_factor_id INT NOT NULL AUTO_INCREMENT
+    , study_id INT
+    , title VARCHAR(255)
     , severe VARCHAR(24)
-    , severe_lower_bound DOUBLE PRECISION(3,6)
-    , severe_upper_bound DOUBLE PRECISION(3,6)
-    , severe_p_value DOUBLE PRECISION(3,6)
+    , severe_lower_bound VARCHAR(24)
+    , severe_upper_bound VARCHAR(24)
+    , severe_p_value VARCHAR(24)
     , severe_significant VARCHAR(64)
     , severe_adjusted VARCHAR(64)
     , severe_calculated VARCHAR(64)
     , fatality VARCHAR(24)
-    , fatality_lower_bound DOUBLE PRECISION(3,6)
-    , fatality_upper_bound DOUBLE PRECISION(3,6)
-    , fatality_p_value DOUBLE PRECISION(3,6)
+    , fatality_lower_bound VARCHAR(24)
+    , fatality_upper_bound VARCHAR(24)
+    , fatality_p_value VARCHAR(24)
     , fatality_significant VARCHAR(64)
     , fatality_adjusted VARCHAR(64)
     , fatality_calculated VARCHAR(64)
     , multivariate_adjustment LONGTEXT
-    , sample_size VARCHAR(64)
+    , sample_size VARCHAR(255)
     , study_population LONGTEXT
     , added_on VARCHAR(64)
     , critical_only VARCHAR(2)
     , discharged_or_death VARCHAR(24)
-    , PRIMARY KEY (title)
+    , PRIMARY KEY (risk_factor_id)
+    , FOREIGN KEY (study_id) REFERENCES Study(study_id)
 );
 
-INSERT INTO `Models and Open Questions`(
-    title 
+INSERT INTO `Risk Factors`(
+    study_id
+    , title 
     , severe 
     , severe_lower_bound 
     , severe_upper_bound  
@@ -50,6 +54,7 @@ INSERT INTO `Models and Open Questions`(
     , critical_only
     , discharged_or_death
 ) SELECT
+    study_id,
     Study,
 
     Severe,
@@ -74,4 +79,5 @@ INSERT INTO `Models and Open Questions`(
     `Added on`,
     `Critical only`,
     `Discharged_or_death`
-FROM temp_risk_f;
+FROM temp_risk_f
+INNER JOIN Study ON title=Study;

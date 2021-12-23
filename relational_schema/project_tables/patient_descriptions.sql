@@ -1,7 +1,9 @@
 DROP TABLE IF EXISTS `Patient Description`;
 
 CREATE TABLE `Patient Description`(
-    title VARCHAR(255)
+    id INT NOT NULL AUTO_INCREMENT
+    , study_id INT
+    , title VARCHAR(255)
     , sample_size VARCHAR(64)
     , age VARCHAR(255)
     , sample_obtained VARCHAR(64)
@@ -10,12 +12,13 @@ CREATE TABLE `Patient Description`(
     , excerpt LONGTEXT
     , added_on VARCHAR(64)
     , question_type VARCHAR(255)
-    , PRIMARY KEY (title)
-    , FOREIGN KEY (title) REFERENCES Study(title)
+    , PRIMARY KEY (id)
+    , FOREIGN KEY (study_id) REFERENCES Study(study_id)
 );
 
 INSERT INTO `Patient Description` (
-    title LONGTEXT
+    study_id
+    , title 
     , sample_size 
     , age 
     , sample_obtained
@@ -25,7 +28,8 @@ INSERT INTO `Patient Description` (
     , added_on
     , question_type
 ) SELECT
-    Study
+    study_id
+    , Study
     , `Sample Size`
     , Age 
     , `Sample Obtained`
@@ -34,4 +38,5 @@ INSERT INTO `Patient Description` (
     , Excerpt
     , `Added on`
     , question_type
-FROM temp_patient;
+FROM temp_patient
+INNER JOIN Study ON title=Study;

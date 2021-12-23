@@ -51,5 +51,3 @@ IGNORE 1 LINES;
 
 ALTER TABLE temp_population
 ADD COLUMN question_type VARCHAR(255) DEFAULT "Population";
-
-CREATE INDEX study_idx On temp_population (Study);

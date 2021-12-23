@@ -1,7 +1,9 @@
 DROP TABLE IF EXISTS `Therapeutics Interventions and Clinical Studies`;
 
 CREATE TABLE `Therapeutics Interventions and Clinical Studies`(
-    title VARCHAR(255)
+    id INT NOT NULL AUTO_INCREMENT
+    , study_id INT
+    , title VARCHAR(255)
     , therapeutic_method LONGTEXT
     , sample_size VARCHAR(255)
     , severity_of_disease LONGTEXT
@@ -10,12 +12,13 @@ CREATE TABLE `Therapeutics Interventions and Clinical Studies`(
     , clinical_improvement VARCHAR(2)
     , added_on VARCHAR(64)
     , question_type VARCHAR(255)
-    , PRIMARY KEY (title)
-    , FOREIGN KEY (title) REFERENCES Study(title)
+    , PRIMARY KEY (id)
+    , FOREIGN KEY (study_id) REFERENCES Study(study_id)
 );
 
 INSERT INTO `Therapeutics Interventions and Clinical Studies` (
-    title 
+    study_id
+    , title 
     , therapeutic_method
     , sample_size
     , severity_of_disease
@@ -25,7 +28,8 @@ INSERT INTO `Therapeutics Interventions and Clinical Studies` (
     , added_on 
     , question_type
 ) SELECT
-    Study
+    study_id
+    , Study
     , `Therapeutic method(s) utilized/assessed`
     , `Sample Size`
     , `Severity of Disease` 
@@ -34,4 +38,5 @@ INSERT INTO `Therapeutics Interventions and Clinical Studies` (
     , `Clinical Improvement (Y/N)`
     , `Added on`
     , question_type
-FROM temp_therapeutics;
+FROM temp_therapeutics
+INNER JOIN Study ON title=Study;

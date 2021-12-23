@@ -45,5 +45,3 @@ ADD COLUMN question_type VARCHAR(255) DEFAULT "Models and Open Questions";
 
 ALTER TABLE temp_models
 ADD COLUMN `Study Type` VARCHAR(64) DEFAULT NULL;
-
-CREATE INDEX study_idx On temp_models (Study);

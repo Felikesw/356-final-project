@@ -2,10 +2,11 @@
 DROP TABLE IF EXISTS Journal;
 
 CREATE TABLE Journal(
-    journal_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (journal_name)
+    journal_id INT NOT NULL AUTO_INCREMENT
+    , journal_name LONGTEXT NOT NULL
+    , PRIMARY KEY (journal_id)
 );
 
 -- populate
 INSERT INTO Journal (journal_name)
-SELECT journal FROM temp_metadata GROUP BY journal;
+SELECT journal FROM temp_metadata_3 GROUP BY journal;

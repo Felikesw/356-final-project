@@ -191,5 +191,3 @@ INTO TABLE temp_risk_f
 FIELDS TERMINATED BY "," ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 LINES;
-
-CREATE INDEX study_idx On temp_risk_f (Study);

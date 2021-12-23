@@ -44,5 +44,3 @@ IGNORE 1 LINES;
 
 ALTER TABLE temp_diagnostics
 ADD COLUMN question_type VARCHAR(255) DEFAULT "Diagnostics";
-
-CREATE INDEX study_idx On temp_diagnostics (Study);

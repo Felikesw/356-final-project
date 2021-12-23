@@ -1,20 +1,23 @@
 DROP TABLE IF EXISTS `Relevant Factor`;
 
 CREATE TABLE `Relevant Factor`(
-    title VARCHAR(255)
+    id INT NOT NULL AUTO_INCREMENT
+    , study_id INT
+    , title VARCHAR(255)
     , factors LONGTEXT
     , influential VARCHAR(2)
     , excerpt LONGTEXT
     , measure_of_evidence LONGTEXT
     , added_on VARCHAR(64)
     , question_type VARCHAR(255)
-    , PRIMARY KEY (title)
-    , FOREIGN KEY (title) REFERENCES Study(title)
+    , PRIMARY KEY (id)
+    , FOREIGN KEY (study_id) REFERENCES Study(study_id)
 
 );
 
 INSERT INTO `Relevant Factor` (
-    title 
+    study_id
+    , title  
     , factors 
     , influential
     , excerpt 
@@ -22,11 +25,13 @@ INSERT INTO `Relevant Factor` (
     , added_on
     , question_type 
 ) SELECT
-    Study
-    ,Factors
+    study_id
+    , Study
+    , Factors
     , Influential
     , Excerpt
     , `Measure of Evidence`
     , `Added on`
     , question_type
-FROM temp_r_factors;
+FROM temp_r_factors
+INNER JOIN Study ON title=Study;

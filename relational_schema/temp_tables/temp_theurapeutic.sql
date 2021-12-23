@@ -49,5 +49,3 @@ IGNORE 1 LINES
 
 ALTER TABLE temp_therapeutics
 ADD COLUMN question_type VARCHAR(255) DEFAULT "Therapeutics Interventions and Clinical Studies";
-
-CREATE INDEX study_idx On temp_therapeutics (Study);
