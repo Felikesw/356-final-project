@@ -9,4 +9,4 @@ CREATE TABLE Journal(
 
 -- populate
 INSERT INTO Journal (journal_name)
-SELECT journal FROM temp_metadata_3 GROUP BY journal;
+SELECT journal FROM temp_metadata GROUP BY journal;
