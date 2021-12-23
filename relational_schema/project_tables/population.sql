@@ -34,3 +34,6 @@ INSERT INTO Population (
     , question_type
 FROM temp_population
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE Population
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 
