@@ -1,5 +1,6 @@
 g2lei
 Pass1234.
+DELETE FROM `Study` WHERE study_type = "Test data insertion";
 [changing record limit to 5]
 1
 4
@@ -25,6 +26,7 @@ Test data insertion
 --------------------------------------------------
 [test for filter with specific attributes]
 1
+1
 Test data insertion
 
 
@@ -32,7 +34,7 @@ Test data insertion
 --------------------------------------------------
 [test for filter with keywords]
 2
-Incarcerated, Endothelin-1
+children, hospitalized
 5
 
 --------------------------------------------------
