@@ -1,6 +1,3 @@
-g2lei
-Pass1234.
-DELETE FROM `Study` WHERE study_type = "Test data insertion";
 [changing record limit to 5]
 1
 4
