@@ -5,9 +5,10 @@ Pass1234.
 4
 1
 5
+5
 
 --------------------------------------------------
-[test for inserting data]
+[test for inserting data into Study table]
 4
 1
 420

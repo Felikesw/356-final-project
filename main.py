@@ -107,8 +107,8 @@ Please select one of the following options:
 
         # close the connections
         if WITH_DB:
-            cursor.close()
-            cnx.close()
+            CURSOR.close()
+            CNX.close()
         # terminate program
         quit()
     else:
