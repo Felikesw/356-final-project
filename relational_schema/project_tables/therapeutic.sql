@@ -40,3 +40,6 @@ INSERT INTO `Therapeutics Interventions and Clinical Studies` (
     , question_type
 FROM temp_therapeutics
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE `Therapeutics Interventions and Clinical Studies`
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 

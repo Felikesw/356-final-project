@@ -31,3 +31,6 @@ INSERT INTO `Models and Open Questions`(
     , `Added on` 
 FROM temp_models
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE `Models and Open Questions`
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 

@@ -35,3 +35,6 @@ INSERT INTO `Relevant Factor` (
     , question_type
 FROM temp_r_factors
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE `Relevant Factor`
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 

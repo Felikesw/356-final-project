@@ -40,3 +40,6 @@ INSERT INTO Materials (
     , question_type
 FROM temp_materials
 INNER JOIN Study ON title=Study;
+
+ALTER TABLE Materials
+ADD FOREIGN KEY (question_type) REFERENCES Questions(question_type); 
